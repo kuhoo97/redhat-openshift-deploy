@@ -13,17 +13,20 @@ public class CustomerServiceImpl implements CustomerService{
    private CustomerRepository repo;
 
    @Autowired
-    public CustomerServiceImpl(CustomerRepository repo) {
+    public CustomerServiceImpl(CustomerRepository repo)
+   {
         this.repo = repo;
     }
 
     @Override
     public Customer saveCustomer(Customer customer) {
-        return repo.save(customer);
+
+       return repo.save(customer);
     }
 
     @Override
     public List<Customer> retrieveCustomers() {
-        return repo.findAll();
+
+       return repo.findAll();
     }
 }

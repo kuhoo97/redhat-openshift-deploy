@@ -19,17 +19,18 @@ public class WebController {
 
     @Autowired
     public WebController(CustomerService customerService) {
+
         this.customerService = customerService;
     }
 
-    @PostMapping("/customers")
+    @PostMapping("/users")
     public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer)
     {
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.saveCustomer(customer));
 
     }
 
-    @GetMapping("/customers")
+    @GetMapping("/users")
     public ResponseEntity<List<Customer>> retrieveCustomer()
     {
         return ResponseEntity.ok(customerService.retrieveCustomers());
