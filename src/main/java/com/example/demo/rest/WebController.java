@@ -3,6 +3,7 @@ package com.example.demo.rest;
 import com.example.demo.model.Customer;
 import com.example.demo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +17,19 @@ import java.util.List;
 public class WebController {
 
     private CustomerService customerService;
+    private Environment environment;
 
     @Autowired
-    public WebController(CustomerService customerService) {
+    public WebController(CustomerService customerService,Environment environment ) {
 
         this.customerService = customerService;
+        this.environment= environment;
+    }
+
+    @GetMapping
+    public ResponseEntity<String> getStatus()
+    {
+        return ResponseEntity.ok("user-service is up and running on port: "+environment.getProperty("local.server.port"));
     }
 
     @PostMapping("/users")
